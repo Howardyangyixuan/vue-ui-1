@@ -2,11 +2,11 @@
   <div>
     <TopNav/>
     <div class="content">
-      <aside>
+      <aside v-if="visible">
         <h2>组件列表</h2>
         <ol>
           <li>
-            <router-link to="/doc/swich">Switch 组件</router-link>
+            <router-link to="/doc/switch">Switch 组件</router-link>
           </li>
           <li>
             <router-link to="/doc/button">Button 组件</router-link>
@@ -26,10 +26,20 @@
 
 <script lang="ts">
   import TopNav from '../components/TopNav.vue';
+  import {inject, Ref} from 'vue';
 
   export default {
     name: 'Doc.vue',
-    components: {TopNav}
+    components: {TopNav},
+    setup() {
+      const visible = inject<Ref<boolean>>('x');
+      return {
+        visible,
+      };
+    },
+    created() {
+      console.log('Doc:', this.visible);
+    },
   };
 </script>
 
