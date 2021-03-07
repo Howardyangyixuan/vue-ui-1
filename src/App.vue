@@ -3,19 +3,22 @@
 </template>
 
 <script>
-  import {ref, provide} from "vue"
+  import {ref, provide, readonly} from "vue"
 
   export default {
     name: "App",
     setup() {
-      const visible = ref(true)
-      provide("x", visible)
-      return {
-        visible
+      const asideVisible = ref(true)
+      const toggleAsideVisible = () => {
+        asideVisible.value = !asideVisible.value
+        console.log("hi")
       }
-    },
-    created() {
-      console.log("app:", this.visible)
+      provide("asideVisible", readonly(asideVisible)
+      )
+      provide("toggleAsideVisible", toggleAsideVisible)
+      return {
+        asideVisible,
+      }
     },
     methods: {}
   }

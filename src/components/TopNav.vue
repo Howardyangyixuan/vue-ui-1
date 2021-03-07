@@ -1,6 +1,6 @@
 <template>
   <div class="topNav">
-    <div class="logo" @click="toggleVisible">LOGO</div>
+    <div class="logo" @click="toggleAsideVisible">LOGO</div>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
@@ -14,20 +14,13 @@
   export default {
     name: 'TopNav',
     setup() {
-      const visible = inject<Ref<boolean>>('x');
-      const toggleVisible = () => {
-        visible.value = !visible.value;
-        console.log('hi');
-      };
+      const asideVisible = inject<Ref<boolean>>('asideVisible');
+      const toggleAsideVisible = inject<Ref<boolean>>('toggleAsideVisible');
       return {
-        visible,
-        toggleVisible
+        asideVisible,
+        toggleAsideVisible
       };
-    },
-    created() {
-      console.log('Nav:', this.visible);
-    },
-
+    }
   };
 </script>
 

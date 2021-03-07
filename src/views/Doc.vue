@@ -2,7 +2,7 @@
   <div>
     <TopNav/>
     <div class="content">
-      <aside v-if="visible">
+      <aside v-if="asideVisible">
         <h2>组件列表</h2>
         <ol>
           <li>
@@ -32,13 +32,10 @@
     name: 'Doc.vue',
     components: {TopNav},
     setup() {
-      const visible = inject<Ref<boolean>>('x');
+      const asideVisible = inject<Ref<boolean>>('asideVisible');
       return {
-        visible,
+        asideVisible,
       };
-    },
-    created() {
-      console.log('Doc:', this.visible);
     },
   };
 </script>
