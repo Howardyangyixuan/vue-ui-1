@@ -8,10 +8,10 @@
   export default {
     name: "App",
     setup() {
-      const asideVisible = ref(true)
+      const width = document.documentElement.clientWidth
+      const asideVisible = ref(width >= 500)
       const toggleAsideVisible = () => {
         asideVisible.value = !asideVisible.value
-        console.log("hi")
       }
       provide("asideVisible", readonly(asideVisible)
       )
