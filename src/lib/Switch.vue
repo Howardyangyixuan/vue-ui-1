@@ -1,16 +1,15 @@
 <template>
   <div>
-    Frank :{{msg}}
+    Switch
   </div>
 </template>
 
 <script lang="ts">
   export default {
-    data() {
-      return {
-        msg: 'hi'
-      };
-    }
+    name: 'Switch'
   };
 </script>
 
+<style lang="scss" scoped>
+
+</style>
