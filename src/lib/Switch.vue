@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="toggle" :class="{checked}"><span></span></button>
+    <button @click="toggle" :class="{checked:value}"><span></span></button>
 
   </div>
 </template>
@@ -10,13 +10,14 @@
 
   export default {
     name: 'Switch',
-    setup() {
-      const checked = ref(true);
+    props:{
+      value:Boolean
+    },
+    setup(props,context) {
       const toggle = () => {
-        checked.value = !checked.value;
+        context.emit('input',!props.value)
       };
       return {
-        checked,
         toggle
       };
     }
