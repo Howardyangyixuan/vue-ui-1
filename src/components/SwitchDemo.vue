@@ -1,7 +1,7 @@
 <template>
   <div>
     SwitchDemo
-    <Switch :value="value" @input="value = $event" />
+    <Switch v-model="value" @input="value = $event" />
   </div>
 </template>
 
