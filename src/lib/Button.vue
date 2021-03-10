@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button>
+    <button v-bind="$attrs">
       <slot/>
     </button>
   </div>
@@ -8,10 +8,13 @@
 
 <script lang="ts">
   export default {
+    inheritAttrs: false,
     name: 'Button'
   };
 </script>
 
 <style lang="scss" scoped>
-
+  div {
+    border: 1px solid red;
+  }
 </style>
