@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <button v-bind="$attrs">
+  <div :style="style">
+    <button v-bind="attrs">
       <slot/>
     </button>
   </div>
@@ -9,7 +9,14 @@
 <script lang="ts">
   export default {
     inheritAttrs: false,
-    name: 'Button'
+    name: 'Button',
+    setup(props, context) {
+      const {style, ...attrs} = context.attrs;
+      return {
+        style,
+        attrs
+      };
+    }
   };
 </script>
 

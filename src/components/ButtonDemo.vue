@@ -1,7 +1,7 @@
 <template>
   <div>
     ButtonDemo
-    <Button @click="fn">插槽实现</Button>
+    <Button @click="fn" :style="{background:'blue'}">插槽实现</Button>
   </div>
 </template>
 
