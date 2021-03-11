@@ -1,6 +1,6 @@
 <template>
   <div :style="style">
-    <button v-bind="attrs" class="default" :class="`theme-${theme}`">
+    <button v-bind="attrs" class="vue-ui-button" :class="`vue-ui-theme-${theme}`">
       <slot/>
     </button>
   </div>
@@ -32,7 +32,7 @@
   $color: #333;
   $blue: #40a9ff;
   $radius: 4px;
-  .default {
+  .vue-ui-button {
     box-sizing: border-box;
     height: $h;
     padding: 0 12px;
