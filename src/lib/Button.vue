@@ -1,12 +1,14 @@
 <template>
   <!--  <div :style="style">-->
-  <button v-bind="attrs" class="vue-ui-button" :class="`vue-ui-theme-${theme}`">
+  <button v-bind="attrs" class="vue-ui-button" :class="classes">
     <slot/>
   </button>
   <!--  </div>-->
 </template>
 
 <script lang="ts">
+  import {computed} from 'vue';
+
   export default {
     inheritAttrs: false,
     name: 'Button',
@@ -14,12 +16,24 @@
       theme: {
         type: String,
         default: 'button'
+      },
+      size: {
+        type: String,
+        default: 'normal'
       }
     },
     setup(props, context) {
       const {style, ...attrs} = context.attrs;
+      const {theme, size} = props;
+      console.log({[`vue-ui-theme-${theme}`]: theme})
+      const classes = computed(() => {
+        return {
+          [`vue-ui-theme-${theme}`]: theme,
+          [`vue-ui-size-${size}`]: size,
+        };
+      });
       return {
-        style,
+        classes,
         attrs
       };
     }
