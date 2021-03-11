@@ -1,7 +1,9 @@
 <template>
   <div>
     ButtonDemo
-    <Button @click="fn" :style="{background:'blue'}">插槽实现</Button>
+    <Button theme="button">button1</Button>
+    <Button theme="text">button2</Button>
+    <Button theme="link">button3</Button>
   </div>
 </template>
 
