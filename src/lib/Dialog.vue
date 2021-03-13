@@ -3,10 +3,12 @@
     <div class="vue-ui-dialog-overlay"></div>
     <div class="vue-ui-dialog-wrapper">
       <div class="vue-ui-dialog">
-        <header>标题 <span class="vue-ui-dialog-close" @click="close"></span></header>
+        <header>
+          {{title}}
+          <span class="vue-ui-dialog-close" @click="close"></span>
+        </header>
         <main>
-          <p>第一行字</p>
-          <p>第二行字</p>
+          <slot/>
         </main>
         <footer>
           <Button level="main" @click="ok">OK</Button>
@@ -24,6 +26,10 @@
     name: 'Dialog',
     components: {Button},
     props: {
+      title: {
+        type: String,
+        default: '标题'
+      },
       visible: {
         type: Boolean
       },
