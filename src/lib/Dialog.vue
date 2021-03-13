@@ -1,21 +1,23 @@
 <template>
   <template v-if="visible">
-    <div class="vue-ui-dialog-overlay"></div>
-    <div class="vue-ui-dialog-wrapper">
-      <div class="vue-ui-dialog">
-        <header>
-          <slot name="title"/>
-          <span class="vue-ui-dialog-close" @click="close"></span>
-        </header>
-        <main>
-          <slot name="content"/>
-        </main>
-        <footer>
-          <Button level="main" @click="ok">OK</Button>
-          <Button @click="cancel">Cancel</Button>
-        </footer>
+    <Teleport to="body">
+      <div class="vue-ui-dialog-overlay"></div>
+      <div class="vue-ui-dialog-wrapper">
+        <div class="vue-ui-dialog">
+          <header>
+            <slot name="title"/>
+            <span class="vue-ui-dialog-close" @click="close"></span>
+          </header>
+          <main>
+            <slot name="content"/>
+          </main>
+          <footer>
+            <Button level="main" @click="ok">OK</Button>
+            <Button @click="cancel">Cancel</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 
