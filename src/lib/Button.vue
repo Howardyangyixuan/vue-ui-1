@@ -29,7 +29,7 @@
     setup(props, context) {
       const {style, ...attrs} = context.attrs;
       const {theme, size, level} = props;
-      console.log({[`vue-ui-theme-${theme}`]: theme});
+      // console.log({[`vue-ui-theme-${theme}`]: theme});
       const classes = computed(() => {
         return {
           [`vue-ui-theme-${theme}`]: theme,
@@ -51,6 +51,7 @@
   $color: #333;
   $blue: #40a9ff;
   $red: red;
+  $grey: grey;
   $radius: 4px;
   .vue-ui-button {
     box-sizing: border-box;
@@ -169,6 +170,24 @@
         &:focus {
           color: darken($red, 10%);
         }
+      }
+    }
+
+    &.vue-ui-theme-button {
+      &[disabled] {
+        cursor: not-allowed;
+        color: $grey;
+
+        &:hover {
+          border-color: $grey;
+        }
+      }
+    }
+
+    &.vue-ui-theme-link, &.vue-ui-theme-text {
+      &[disabled] {
+        cursor: not-allowed;
+        color: $grey;
       }
     }
   }
