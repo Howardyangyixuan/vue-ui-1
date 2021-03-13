@@ -3,8 +3,13 @@
     <div>Dialog 示例</div>
     <h1>示例1</h1>
     <Button @click="toggle">打开对话框</Button>
-    <Dialog v-model:visible="prompt" title="自定义title" :ok="()=>{return false}">
-      自定义内容
+    <Dialog v-model:visible="prompt" :ok="()=>{return false}">
+      <template v-slot:content>
+        <u> 自定义内容 </u>
+      </template>
+      <template v-slot:title>
+        <strong>自定义标题</strong>
+      </template>
     </dialog>
   </div>
 </template>

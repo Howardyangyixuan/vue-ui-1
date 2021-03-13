@@ -4,11 +4,11 @@
     <div class="vue-ui-dialog-wrapper">
       <div class="vue-ui-dialog">
         <header>
-          {{title}}
+          <slot name="title"/>
           <span class="vue-ui-dialog-close" @click="close"></span>
         </header>
         <main>
-          <slot/>
+          <slot name="content"/>
         </main>
         <footer>
           <Button level="main" @click="ok">OK</Button>
@@ -28,7 +28,7 @@
     props: {
       title: {
         type: String,
-        default: '标题'
+        default: ''
       },
       visible: {
         type: Boolean
