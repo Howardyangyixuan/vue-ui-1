@@ -1,6 +1,7 @@
 <template>
   <!--  <div :style="style">-->
   <button v-bind="attrs" class="vue-ui-button" :class="classes">
+    <span v-if="loading" class="vue-ui-loading"/>
     <slot/>
   </button>
   <!--  </div>-->
@@ -24,6 +25,10 @@
       level: {
         type: String,
         default: 'normal',
+      },
+      loading: {
+        type: Boolean,
+        default: false,
       }
     },
     setup(props, context) {
@@ -189,6 +194,27 @@
         cursor: not-allowed;
         color: $grey;
       }
+    }
+
+    > .vue-ui-loading {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      margin-right: 4px;
+      border-radius: 8px;
+      border-color: $blue $blue $blue transparent;
+      border-style: solid;
+      border-width: 2px;
+      animation: vue-ui-spin 1s infinite linear;
+    }
+  }
+
+  @keyframes vue-ui-spin {
+    0% {
+      transform: rotate(0deg)
+    }
+    100% {
+      transform: rotate(360deg)
     }
   }
 </style>
