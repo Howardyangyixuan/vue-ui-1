@@ -1,7 +1,7 @@
 <template>
   <template v-if="visible">
     <Teleport to="body">
-      <div class="vue-ui-dialog-overlay"></div>
+      <div class="vue-ui-dialog-overlay" @click="onClickOverlay"></div>
       <div class="vue-ui-dialog-wrapper">
         <div class="vue-ui-dialog">
           <header>
@@ -51,20 +51,22 @@
     setup(props, context) {
       const close = () => {
         context.emit('update:visible', !props.visible);
-        console.log('hi');
       };
       const onClickOverlay = () => {
         if (props.closeOnClickOverlay) {
+          console.log(props.closeOnClickOverlay);
           close();
         }
       };
       const ok = () => {
+        console.log('ok');
         if (props.ok?.() !== false) {
           close();
         }
       };
       const cancel = () => {
-        context.emit('cancel');
+        console.log('cancel');
+        props.cancel?.();
         close();
       };
       return {
