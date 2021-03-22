@@ -1,7 +1,12 @@
 <template>
-  <div>
-    <div v-for="(title,idx) in titles" :key="idx">{{title}}</div>
-    <component v-for="(d,idx) in defaults" :key="idx" :is="d"/>
+  <div class="vue-ui-tabs">
+    <div class="vue-ui-tabs-nav">
+      <div class="vue-ui-tabs-nav-item" v-for="(title,index) in titles" :key="index">{{title}}</div>
+    </div>
+    <div class="vue-ui-tabs-content">
+      <component class="vue-ui-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index"/>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,7 +24,6 @@
       const titles = defaults.map((item) => {
         return item.props.title;
       });
-      console.log(titles);
       return {
         defaults,
         titles
@@ -29,5 +33,32 @@
 </script>
 
 <style lang="scss" scoped>
+  $blue: #40a9ff;
+  $color: #333;
+  $border-color: #d9d9d9;
+  .vue-ui-tabs {
+    &-nav {
+      display: flex;
+      color: $color;
+      border-bottom: 1px solid $border-color;
 
+      &-item {
+        padding: 8px 0;
+        margin: 0 16px;
+        cursor: pointer;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &.selected {
+          color: $blue;
+        }
+      }
+    }
+
+    &-content {
+      padding: 8px 0;
+    }
+  }
 </style>
