@@ -2,7 +2,7 @@
   <div class="vue-ui-tabs">
     <div class="vue-ui-tabs-nav" ref="container">
       <div class="vue-ui-tabs-nav-item" @click="select(title)" v-for="(title,index) in titles" :key="index"
-           :ref="el => { if (el) navItems[index] = el }"
+           :ref="el => { if (title===selected) selectedItem = el }"
            :class="{selected:title===selected}">{{title}}
       </div>
       <div class="vue-ui-tabs-nav-indicator" ref="indicator"/>
@@ -22,22 +22,17 @@
     name: 'Tabs',
     props: ['selected'],
     setup(props, context) {
-      const navItems = ref<HTMLDivElement[]>([]);
+      const selectedItem = ref<HTMLDivElement>();
       const indicator = ref<HTMLDivElement>();
       const container = ref<HTMLDivElement>();
       const x = () => {
-        const divs = navItems.value;
-        const result = divs.find(div => div.classList.contains('selected'));
         const {left: baseLeft} = container.value.getBoundingClientRect();
-        const {left: curLeft, width} = result.getBoundingClientRect();
+        const {left: curLeft, width} = selectedItem.value.getBoundingClientRect();
         indicator.value.style.width = width + 'px';
         indicator.value.style.left = (curLeft - baseLeft) + 'px';
-      }
+      };
       onUpdated(x);
       onMounted(x);
-      onBeforeUpdate(() => {
-        navItems.value = [];
-      });
       const defaults = context.slots.default();
       defaults.forEach((item) => {
         if (item.type !== Tab) {
@@ -54,7 +49,7 @@
         defaults,
         titles,
         select,
-        navItems,
+        selectedItem,
         indicator,
         container
       };
