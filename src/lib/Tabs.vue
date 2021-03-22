@@ -1,12 +1,13 @@
 <template>
   <div class="vue-ui-tabs">
     <div class="vue-ui-tabs-nav">
-      <div class="vue-ui-tabs-nav-item" v-for="(title,index) in titles" :key="index"
+      <div class="vue-ui-tabs-nav-item" @click="select(title)" v-for="(title,index) in titles" :key="index"
            :class="{selected:title===selected}">{{title}}
       </div>
     </div>
     <div class="vue-ui-tabs-content">
-      <component class="vue-ui-tabs-content-item"   v-for="(c,index) in defaults" :is="c" :key="index" :visible="titles[index]===selected"/>
+      <component class="vue-ui-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index"
+                 :visible="titles[index]===selected"/>
     </div>
   </div>
 </template>
@@ -24,12 +25,18 @@
           throw new Error('slots中存在类型不是Tab的标签!');
         }
       });
+      console.log(props.selected);
       const titles = defaults.map((item) => {
         return item.props.title;
       });
+      const select = (title: String) => {
+        console.log(title);
+        context.emit('update:selected', title);
+      };
       return {
         defaults,
-        titles
+        titles,
+        select
       };
     }
   };
