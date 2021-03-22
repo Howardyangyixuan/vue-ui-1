@@ -1,6 +1,6 @@
 <template>
   <div class="vue-ui-tabs">
-    <div class="vue-ui-tabs-nav">
+    <div class="vue-ui-tabs-nav" ref="container">
       <div class="vue-ui-tabs-nav-item" @click="select(title)" v-for="(title,index) in titles" :key="index"
            :ref="el => { if (el) navItems[index] = el }"
            :class="{selected:title===selected}">{{title}}
@@ -16,7 +16,7 @@
 
 <script lang="ts">
   import Tab from './Tab.vue';
-  import {ref, onBeforeUpdate, onMounted} from 'vue';
+  import {ref, onBeforeUpdate, onMounted, onUpdated} from 'vue';
 
   export default {
     name: 'Tabs',
@@ -24,12 +24,17 @@
     setup(props, context) {
       const navItems = ref<HTMLDivElement[]>([]);
       const indicator = ref<HTMLDivElement>();
-      onMounted(() => {
+      const container = ref<HTMLDivElement>();
+      const x = () => {
         const divs = navItems.value;
         const result = divs.find(div => div.classList.contains('selected'));
-        const {width} = result.getBoundingClientRect();
+        const {left: baseLeft} = container.value.getBoundingClientRect();
+        const {left: curLeft, width} = result.getBoundingClientRect();
         indicator.value.style.width = width + 'px';
-      });
+        indicator.value.style.left = (curLeft - baseLeft) + 'px';
+      }
+      onUpdated(x);
+      onMounted(x);
       onBeforeUpdate(() => {
         navItems.value = [];
       });
@@ -50,7 +55,8 @@
         titles,
         select,
         navItems,
-        indicator
+        indicator,
+        container
       };
     }
   };
@@ -88,6 +94,7 @@
         left: 0;
         bottom: -1px;
         width: 100px;
+        transition: all 250ms
       }
     }
 
