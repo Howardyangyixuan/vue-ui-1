@@ -1,12 +1,13 @@
 <template>
-  <div>
+  <div v-if="visible">
     <slot/>
   </div>
 </template>
 
 <script lang="ts">
   export default {
-    name: 'Tab'
+    name: 'Tab',
+    props: ['visible']
   };
 </script>
 

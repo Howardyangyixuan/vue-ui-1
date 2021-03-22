@@ -1,10 +1,12 @@
 <template>
   <div class="vue-ui-tabs">
     <div class="vue-ui-tabs-nav">
-      <div class="vue-ui-tabs-nav-item" v-for="(title,index) in titles" :key="index">{{title}}</div>
+      <div class="vue-ui-tabs-nav-item" v-for="(title,index) in titles" :key="index"
+           :class="{selected:title===selected}">{{title}}
+      </div>
     </div>
     <div class="vue-ui-tabs-content">
-      <component class="vue-ui-tabs-content-item" v-for="(c,index) in defaults" :is="c" :key="index"/>
+      <component class="vue-ui-tabs-content-item"   v-for="(c,index) in defaults" :is="c" :key="index" :visible="titles[index]===selected"/>
     </div>
   </div>
 </template>
@@ -14,6 +16,7 @@
 
   export default {
     name: 'Tabs',
+    props: ['selected'],
     setup(props, context) {
       const defaults = context.slots.default();
       defaults.forEach((item) => {
