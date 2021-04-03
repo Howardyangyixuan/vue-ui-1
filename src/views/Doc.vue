@@ -86,12 +86,11 @@
     > main {
       flex-grow: 1;
       padding: 16px;
-      background: lightgreen;
     }
   }
 
   aside {
-    background: lightblue;
+    background: #22687b;
     width: 150px;
     position: fixed;
     top: 0;
@@ -113,7 +112,7 @@
         }
 
         .router-link-active {
-          background: white;
+          background: #f7ece2;
         }
       }
     }

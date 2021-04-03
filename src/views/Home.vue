@@ -48,7 +48,7 @@
 
 <style lang="scss" scoped>
   $border-radius: 30px;
-  $yellow: #f8c0ab;
+  $yellow: #f7ece2;
 
   .topNavAndBanner {
     background: rgb(34, 104, 123);
