@@ -32,7 +32,8 @@
             </li>
           </ol>
         </aside>
-        <main>主内容
+        <main>
+          这里是 Y-y_x UI
           <router-view/>
         </main>
       </div>
@@ -112,6 +113,10 @@
         }
 
         .router-link-active {
+          border-left:5px solid #22687b;
+          border-right:5px solid #22687b;
+          border-radius:  20px 0;
+          text-align: center;
           background: #f7ece2;
         }
       }
