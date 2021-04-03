@@ -5,7 +5,7 @@
       <h1>Yyx UI</h1>
       <h2>Vue UI框架</h2>
       <p class="actions">
-        <a href="">Github</a>
+        <a href="https://github.com/Howardyangyixuan/vue-ui-1">Github</a>
         <router-link to="/doc">开始</router-link>
       </p>
     </div>
