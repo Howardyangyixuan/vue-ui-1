@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="toggle" :class="{checked:modelValue}"><span></span></button>
+    <button @click="toggle" :class="{checked:value}"><span></span></button>
 
   </div>
 </template>
@@ -10,11 +10,11 @@
   export default {
     name: 'Switch',
     props: {
-      modelValue: Boolean
+      value: Boolean
     },
     setup(props, context) {
       const toggle = () => {
-        context.emit('input', !props.modelValue);
+        context.emit('update:value', !props.value);
       };
       return {
         toggle
