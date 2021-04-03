@@ -46,14 +46,13 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 20;
     justify-content: center;
     align-items: center;
 
     > .logo {
       max-width: 6em;
       margin-right: auto;
-
       > svg {
         width: 50px;
         height: 50px;

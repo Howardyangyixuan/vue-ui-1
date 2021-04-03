@@ -96,6 +96,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 10;
     padding: 70px 0 16px;
     height: 100%;
 
